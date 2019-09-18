@@ -18,7 +18,8 @@ class TodoItem extends Component {
     if (todos) {
       return todos.map(todo => {
         // return <div key={todo.id} onClick={ () => this.props.selectTodo(todo)}> {todo.desc} </div>
-        return <div key={todo.id}>{todo.id}. {todo.todo} </div>;
+         return <div key={todo.id}>{todo.id}. {todo.todo} </div>;
+       // return  "("+todo.id+")"
       });
     }
   }

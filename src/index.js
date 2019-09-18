@@ -14,8 +14,8 @@ import reducers from './reducers/rootReducer'
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 
-
 ReactDOM.render(
 <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <App />
 </Provider>, document.getElementById('root'));
+

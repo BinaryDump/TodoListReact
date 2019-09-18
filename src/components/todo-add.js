@@ -1,31 +1,65 @@
-// import React, { Component } from 'react'
-// import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { addTodo } from "../actions/index";
 
-// class TodoAdd extends Component {
 
-    
-//     render () {
-//         let { todos } = this.props;
-//         return (
-            
-//             <div>
-//                 <input type="text" placeholder="Add here ..." /><button onClick={AddTodo} > Add ... </button>
-//             </div>
-//         )
-//     }
-// }
+class TodoAdd extends React.Component {
+  // constructor(props, context) {
+  //   super(props, context);
+  //   this.state = { value: "" };
+  //   this.addValue = this.addValue.bind(this);
+  //   this.updateInput = this.updateInput.bind(this);
+  // }
 
-// function     AddTodo(state){
-//     debugger;
-//     console.log("stateAdd", this.props.todos)
-//    // this.setState({ todos : todos.push( {id : "1",desc : "todo1"} ) }) ;
-// }
+  constructor(props){
+    super(props)
+    this.state = { input : ""};
+  }
 
-// const mapStateToProps = state => {
-//     console.log("state", state);
-//   return {
-//     todos: state.todos
-//   };
-// };
+  handleAddTodo = () => {
+    // dispatches actions to add todo
+    //debugger;
+    this.props.addTodo(this.state.input)
+    console.log("propshandle", this.props)
+    // sets state back to empty string
+    this.setState({ input: '' })
+  }
 
-// export default connect(mapStateToProps) (TodoAdd)
+  updateInput(val){
+    console.log("currentInput", val)
+    this.setState({ input: val })
+  }
+
+  render() {
+    return (
+      <div>
+        <input
+          onChange={e => this.updateInput(e.target.value)}
+          value={this.state.input}
+        />
+        <button className="add-todo" onClick={this.handleAddTodo}>
+          Add Todo
+        </button>
+      </div>
+    )
+  }
+} 
+
+
+
+function mapStateToProps(state, ownProps) {
+  return {
+    todos: state.todos
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  // return //({selectTodo : selectTodo} , dispatch)
+  return { addTodo: bindActionCreators(addTodo, dispatch) };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoAdd);

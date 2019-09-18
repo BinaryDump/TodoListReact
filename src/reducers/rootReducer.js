@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import TodoList from './todoReducer';
+import Todos from './todoReducer';
 
 // const initState = combineReducers( {
 //     todos : TodoList
@@ -10,7 +10,8 @@ import TodoList from './todoReducer';
 // };
 
 const rootReducer = combineReducers({
-    todos : TodoList
+    todos : Todos,
+  
 });
 
 export default rootReducer;
